@@ -414,6 +414,27 @@ ip/test_mgmt_ipv6_only.py::test_telemetry_output_ipv6_only:
       - "https://github.com/sonic-net/sonic-mgmt/issues/28017 and asic_type in ['vpp'] and release == 'master'"
 
 #######################################
+#####           MACsec            #####
+#######################################
+macsec/test_controlplane.py::TestControlPlane::test_mka_session:
+  skip:
+    reason: "No kernel MACsec objects on VPP; SCI/AN/SA come from APPL_DB / SAI"
+    conditions:
+      - "asic_type in ['vpp']"
+
+macsec/test_interop_protocol.py::TestInteropProtocol::test_snmp:
+  skip:
+    reason: "vSONiC neighbor loses route to DUT Loopback0 after test_port_channel member del/add (same as VS; sonic-buildimage#22081, sonic-mgmt#18273). Not a SecY gap."
+    conditions:
+      - "asic_type in ['vpp']"
+
+macsec/test_macsec_pfc.py:
+  skip:
+    reason: "PFC/QoS datapath not implemented on sonic-vpp t0"
+    conditions:
+      - "asic_type in ['vpp']"
+
+#######################################
 #####         Memory Checker      #####
 #######################################
 memory_checker/test_memory_checker.py::test_memory_checker:

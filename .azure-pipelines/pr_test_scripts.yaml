@@ -847,6 +847,11 @@ t0-vpp:
   - ipfwd/test_dip_sip.py
   - lldp/test_lldp.py
   - lldp/test_lldp_syncd.py
+  - macsec/test_controlplane.py
+  - macsec/test_dataplane.py
+  - macsec/test_deployment.py
+  - macsec/test_fault_handling.py
+  - macsec/test_interop_protocol.py
   - pc/test_lag_2.py
   - pc/test_lag_member.py
   - pc/test_lag_member_forwarding.py
@@ -1082,6 +1087,9 @@ specific_param:
 #  all the test modules under macsec directory
   - name: macsec
     param: "--neighbor_type=sonic --enable_macsec --macsec_profile=128_SCI,256_XPN_SCI"
+  t0-vpp:
+  - name: macsec
+    param: "--neighbor_type=vsonic --enable_macsec --macsec_profile=128_SCI,256_XPN_SCI"
   dpu:
   - name: dash/test_dash_vnet.py
     param: " --skip_dataplane_checking "
